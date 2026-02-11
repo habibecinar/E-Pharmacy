@@ -9,10 +9,11 @@ const Header = () => {
         <div className="header-content">
           {/* Logo */}
           <Link to="/home" className="header-logo">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="8" fill="#59B17A"/>
-              <path d="M16 8L8 16H12V24H20V16H24L16 8Z" fill="white"/>
-            </svg>
+            <img 
+              src="/images/logo/logo.png" 
+              alt="E-Pharmacy Logo" 
+              className="header-logo-img"
+            />
             <span className="header-logo-text">E-Pharmacy</span>
           </Link>
 

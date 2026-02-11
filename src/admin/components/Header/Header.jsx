@@ -27,7 +27,14 @@ const Header = () => {
     <header className="admin-header">
       <div className="admin-header-content">
         <div className="admin-header-left">
-          <h1 className="admin-header-brand">Medicine Store</h1>
+          <div className="admin-header-brand">
+            <img 
+              src="/images/logo/logo.png" 
+              alt="E-Pharmacy Logo" 
+              className="admin-header-logo"
+            />
+            <h1 className="admin-header-title">Medicine Store</h1>
+          </div>
           <span className="admin-header-divider">/</span>
           <span className="admin-header-page">{getPageTitle()}</span>
         </div>

@@ -22,6 +22,18 @@
 }
 
 .admin-header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.admin-header-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.admin-header-title {
   font-size: var(--font-size-lg);
   font-weight: 600;
   margin: 0;
