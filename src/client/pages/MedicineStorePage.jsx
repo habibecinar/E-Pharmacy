@@ -16,7 +16,7 @@ const MedicineStorePage = () => {
       phone: "0216 123 45 67",
       hours: "09:00 - 22:00",
       rating: 4.8,
-      image: "/images/stores/pharmacy-1.jpg"
+      image: "https://images.unsplash.com/photo-1576671081837-49000212a370?w=400&h=300&fit=crop"
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const MedicineStorePage = () => {
       phone: "0312 987 65 43",
       hours: "08:00 - 23:00",
       rating: 4.6,
-      image: "/images/stores/pharmacy-2.jpg"
+      image: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop"
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ const MedicineStorePage = () => {
       phone: "0232 456 78 90",
       hours: "07:00 - 21:00",
       rating: 4.9,
-      image: "/images/stores/pharmacy-3.jpg"
+      image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop"
     },
     {
       id: 4,
@@ -46,7 +46,7 @@ const MedicineStorePage = () => {
       phone: "0212 345 67 89",
       hours: "24 Saat",
       rating: 4.7,
-      image: "/images/stores/pharmacy-4.jpg"
+      image: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=400&h=300&fit=crop"
     },
     {
       id: 5,
@@ -56,7 +56,7 @@ const MedicineStorePage = () => {
       phone: "0312 234 56 78",
       hours: "08:30 - 20:00",
       rating: 4.5,
-      image: "/images/stores/pharmacy-5.jpg"
+      image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&h=300&fit=crop"
     },
     {
       id: 6,
@@ -66,7 +66,7 @@ const MedicineStorePage = () => {
       phone: "0232 567 89 01",
       hours: "09:00 - 21:00",
       rating: 4.8,
-      image: "/images/stores/pharmacy-6.jpg"
+      image: "https://images.unsplash.com/photo-1550572017-4814bde02a37?w=400&h=300&fit=crop"
     }
   ];
 

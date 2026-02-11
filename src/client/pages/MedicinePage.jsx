@@ -15,7 +15,7 @@ const MedicinePage = () => {
       description: "Rubbing (Agneall)",
       price: 54,
       category: "First Aid",
-      image: "/images/products/isopro-alcohol.png"
+      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&h=200&fit=crop"
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const MedicinePage = () => {
       description: "Whitening & Clarifying",
       price: 520,
       category: "Skin Care",
-      image: "/images/products/dapsone.png"
+      image: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=200&h=200&fit=crop"
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const MedicinePage = () => {
       description: "Overhead Doors",
       price: 470,
       category: "Supplements",
-      image: "/images/products/helminthos.png"
+      image: "https://images.unsplash.com/photo-1550572017-4814bde02a37?w=200&h=200&fit=crop"
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ const MedicinePage = () => {
       description: "Prednisolone Metal",
       price: 748,
       category: "First Aid",
-      image: "/images/products/alcohol.png"
+      image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=200&h=200&fit=crop"
     },
     {
       id: 5,
@@ -47,7 +47,7 @@ const MedicinePage = () => {
       description: "Catapril Tsinvat",
       price: 582,
       category: "Medicine",
-      image: "/images/products/hydrochloride.png"
+      image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=200&h=200&fit=crop"
     },
     {
       id: 6,
@@ -55,7 +55,7 @@ const MedicinePage = () => {
       description: "Fire Sprinkler System",
       price: 239,
       category: "Herbal",
-      image: "/images/products/occidentalis.png"
+      image: "https://images.unsplash.com/photo-1585435557343-3b092031a831?w=200&h=200&fit=crop"
     },
     {
       id: 7,
@@ -63,7 +63,7 @@ const MedicinePage = () => {
       description: "Diabetes Medication",
       price: 354,
       category: "Medicine",
-      image: "/images/products/metformin.png"
+      image: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=200&h=200&fit=crop"
     },
     {
       id: 8,
@@ -71,7 +71,7 @@ const MedicinePage = () => {
       description: "SPF Protection",
       price: 306,
       category: "Skin Care",
-      image: "/images/products/octinoxate.png"
+      image: "https://images.unsplash.com/photo-1563213126-a4273aed2016?w=200&h=200&fit=crop"
     }
   ];
 
