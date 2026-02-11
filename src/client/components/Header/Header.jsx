@@ -11,10 +11,9 @@ const Header = () => {
           <Link to="/home" className="header-logo">
             <img 
               src="/images/logo/logo.png" 
-              alt="E-Pharmacy Logo" 
+              alt="E-Pharmacy" 
               className="header-logo-img"
             />
-            <span className="header-logo-text">E-Pharmacy</span>
           </Link>
 
           {/* Navigation */}

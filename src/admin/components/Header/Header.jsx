@@ -30,10 +30,9 @@ const Header = () => {
           <div className="admin-header-brand">
             <img 
               src="/images/logo/logo.png" 
-              alt="E-Pharmacy Logo" 
+              alt="E-Pharmacy" 
               className="admin-header-logo"
             />
-            <h1 className="admin-header-title">Medicine Store</h1>
           </div>
           <span className="admin-header-divider">/</span>
           <span className="admin-header-page">{getPageTitle()}</span>
