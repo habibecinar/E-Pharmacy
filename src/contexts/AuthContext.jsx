@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
           setUser(userData);
           setIsAdmin(userRole === 'admin');
         } catch (error) {
+          console.log('Auth init error (expected if no backend):', error.message);
           localStorage.removeItem('token');
           localStorage.removeItem('userRole');
         }
@@ -85,6 +86,21 @@ export const AuthProvider = ({ children }) => {
     register,
     logout,
   };
+
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        fontSize: '20px',
+        color: '#4CAF50'
+      }}>
+        Loading E-Pharmacy...
+      </div>
+    );
+  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
