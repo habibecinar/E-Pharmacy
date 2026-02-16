@@ -8,6 +8,8 @@ import ClientLayout from './client/layouts/ClientLayout';
 import HomePage from './client/pages/HomePage';
 import MedicineStorePage from './client/pages/MedicineStorePage';
 import MedicinePage from './client/pages/MedicinePage';
+import MedicineDetailPage from './client/pages/MedicineDetailPage';
+import StatisticsPage from './client/pages/StatisticsPage';
 import ProductPage from './client/pages/ProductPage';
 import CartPage from './client/pages/CartPage';
 import RegisterPage from './client/pages/RegisterPage';
@@ -44,6 +46,8 @@ function AppRoutes() {
         <Route path="home" element={<HomePage />} />
         <Route path="medicine-store" element={<MedicineStorePage />} />
         <Route path="medicine" element={<MedicinePage />} />
+        <Route path="medicine/:id" element={<MedicineDetailPage />} />
+        <Route path="statistics" element={<StatisticsPage />} />
         <Route path="product/:id" element={<ProductPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />

@@ -1,0 +1,245 @@
+.medicine-detail-page {
+  padding: 40px 0;
+  min-height: 100vh;
+}
+
+.product-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  max-width: 1000px;
+}
+
+.product-image-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.product-main-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f8f8f8;
+  padding: 20px;
+}
+
+.btn-add-to-shop {
+  width: 100%;
+  background: #59B17A;
+  color: #ffffff;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add-to-shop:hover {
+  background: #4a9665;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(89, 177, 122, 0.3);
+}
+
+.product-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.product-name {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.product-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #59B17A;
+  margin: 0;
+}
+
+/* Tabs */
+.product-tabs {
+  display: flex;
+  gap: 16px;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.tab-button {
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666666;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  color: #59B17A;
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #59B17A;
+}
+
+.tab-button:hover {
+  color: #59B17A;
+}
+
+/* Tab Content */
+.tab-content {
+  min-height: 400px;
+}
+
+.description-content {
+  padding: 24px 0;
+}
+
+.description-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333333;
+  margin: 0;
+}
+
+/* Reviews */
+.reviews-content {
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.review-item {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.review-item:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.review-author {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.review-date {
+  font-size: 14px;
+  color: #999999;
+}
+
+.review-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666666;
+  margin: 0;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.pagination-btn,
+.pagination-number {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pagination-btn:hover:not(:disabled),
+.pagination-number:hover {
+  border-color: #59B17A;
+  color: #59B17A;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-number.active {
+  background: #59B17A;
+  color: #ffffff;
+  border-color: #59B17A;
+}
+
+.pagination-dots {
+  color: #666666;
+  padding: 0 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .medicine-detail-page {
+    padding: 20px 0;
+  }
+
+  .product-detail-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .product-name {
+    font-size: 24px;
+  }
+
+  .product-price {
+    font-size: 22px;
+  }
+
+  .tab-content {
+    min-height: 300px;
+  }
+
+  .pagination {
+    gap: 4px;
+  }
+
+  .pagination-btn,
+  .pagination-number {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+}

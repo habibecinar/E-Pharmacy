@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '../../shared/components';
 import './MedicinePage.css';
 
 const MedicinePage = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
@@ -166,7 +168,12 @@ const MedicinePage = () => {
                 <Button variant="primary" size="small" className="add-to-shop-btn">
                   Add to shop
                 </Button>
-                <button className="details-link">Details</button>
+                <button 
+                  className="details-link"
+                  onClick={() => navigate(`/medicine/${medicine.id}`)}
+                >
+                  Details
+                </button>
               </div>
             </div>
           ))}
