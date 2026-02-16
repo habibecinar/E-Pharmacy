@@ -78,15 +78,19 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .pill-shape {
-  width: 180px;
-  height: 180px;
-  background: #ffffff;
+  width: 200px;
+  height: 200px;
+  background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop');
+  background-size: cover;
+  background-position: center;
   border-radius: 50%;
   position: relative;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
 .pill-shape::before {
@@ -94,21 +98,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 50%;
+  right: 0;
   bottom: 0;
-  background: #e0e0e0;
-  border-radius: 90px 0 0 90px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(89,177,122,0.1) 100%);
+  border-radius: 50%;
 }
 
 .pill-shape::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  width: 4px;
-  height: 220px;
-  background: #b0b0b0;
+  display: none;
 }
 
 .auth-hero-text {
@@ -141,23 +138,31 @@
 }
 
 .small-pill {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.6);
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  background-position: center;
   border-radius: 50%;
   backdrop-filter: blur(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .pill-1 {
-  background: rgba(89, 177, 122, 0.2);
+  background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=150&h=150&fit=crop');
+  background-color: rgba(89, 177, 122, 0.1);
+  background-blend-mode: overlay;
 }
 
 .pill-2 {
-  background: rgba(255, 255, 255, 0.8);
+  background-image: url('https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=150&h=150&fit=crop');
+  background-color: rgba(255, 255, 255, 0.3);
+  background-blend-mode: overlay;
 }
 
 .pill-3 {
-  background: rgba(89, 177, 122, 0.15);
+  background-image: url('https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=150&h=150&fit=crop');
+  background-color: rgba(89, 177, 122, 0.05);
+  background-blend-mode: overlay;
 }
 
 /* Right Side - Form */
