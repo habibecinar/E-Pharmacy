@@ -40,9 +40,11 @@ const AdminRoute = ({ children }) => {
 function AppRoutes() {
   return (
     <Routes>
+      {/* Landing Page - Redirect to Register */}
+      <Route index element={<Navigate to="/register" replace />} />
+      
       {/* Client Routes */}
       <Route path="/" element={<ClientLayout />}>
-        <Route index element={<Navigate to="/home" replace />} />
         <Route path="home" element={<HomePage />} />
         <Route path="medicine-store" element={<MedicineStorePage />} />
         <Route path="medicine" element={<MedicinePage />} />
