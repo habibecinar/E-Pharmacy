@@ -27,7 +27,7 @@ const HomePage = () => {
             </div>
             <div className="hero-image">
               <img 
-                src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600&h=600&fit=crop" 
+                src="/images/hero/white-pill.jpg" 
                 alt="Medicine Pill" 
                 className="hero-pill-img"
               />
