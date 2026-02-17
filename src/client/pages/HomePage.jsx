@@ -27,7 +27,7 @@ const HomePage = () => {
             </div>
             <div className="hero-image">
               <img 
-                src="/images/hero/white-pill.jpg" 
+                src="/images/hero/white-pill.png" 
                 alt="Medicine Pill" 
                 className="hero-pill-img"
               />
