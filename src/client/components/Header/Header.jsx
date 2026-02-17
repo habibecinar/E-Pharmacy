@@ -1,8 +1,17 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/AuthContext';
 import { Button } from '../../../shared/components';
 import './Header.css';
 
 const Header = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -31,7 +40,7 @@ const Header = () => {
 
           {/* Auth Buttons */}
           <div className="header-auth">
-            <Button variant="outline" size="small">
+            <Button variant="outline" size="small" onClick={handleLogout}>
               Log out
             </Button>
           </div>
