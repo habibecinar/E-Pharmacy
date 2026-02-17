@@ -52,10 +52,10 @@
 }
 
 .hero-pill-img {
-  width: 350px;
-  height: 350px;
+  width: 180px;
+  height: 175px;
   object-fit: contain;
-  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
   animation: float 6s ease-in-out infinite;
 }
 
@@ -81,8 +81,8 @@
   }
 
   .hero-pill-img {
-    width: 280px;
-    height: 280px;
+    width: 150px;
+    height: 145px;
   }
 
   .hero-text {
@@ -105,8 +105,8 @@
   }
 
   .hero-pill-img {
-    width: 220px;
-    height: 220px;
+    width: 120px;
+    height: 115px;
   }
 
   .hero-buttons {
