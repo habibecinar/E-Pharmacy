@@ -248,6 +248,24 @@
   text-decoration: underline;
 }
 
+/* White Pill Image */
+.auth-pill-img {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(-50%) translateX(0px);
+  }
+  50% {
+    transform: translateY(-50%) translateX(-10px);
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .auth-container {

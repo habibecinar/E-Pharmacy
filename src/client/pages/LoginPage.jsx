@@ -51,9 +51,11 @@ const LoginPage = () => {
 
           <div className="auth-hero">
             <div className="pill-illustration">
-              <div className="pill-circle">
-                <div className="pill-shape"></div>
-              </div>
+              <img 
+                src="/images/hero/white-pill.png" 
+                alt="Medicine Pill" 
+                className="auth-pill-img"
+              />
             </div>
 
             <div className="auth-hero-text">
@@ -63,12 +65,6 @@ const LoginPage = () => {
                 to all <span className="highlight">your healthcare</span><br />
                 worries with us
               </h1>
-            </div>
-
-            <div className="decorative-pills">
-              <div className="small-pill pill-1"></div>
-              <div className="small-pill pill-2"></div>
-              <div className="small-pill pill-3"></div>
             </div>
           </div>
         </div>
@@ -105,7 +101,7 @@ const LoginPage = () => {
               </Button>
 
               <p className="auth-switch">
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link to="/register" className="auth-link">Register</Link>
               </p>
             </form>
