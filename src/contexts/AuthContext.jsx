@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { authService } from '../services/authService';
 import toast from 'react-hot-toast';
 
 const AuthContext = createContext(null);
@@ -12,70 +11,75 @@ export const useAuth = () => {
   return context;
 };
 
+// Mock users stored in localStorage
+const getMockUsers = () => JSON.parse(localStorage.getItem('mockUsers') || '[]');
+const saveMockUsers = (users) => localStorage.setItem('mockUsers', JSON.stringify(users));
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const initAuth = async () => {
-      const token = localStorage.getItem('token');
-      const userRole = localStorage.getItem('userRole');
-      
-      if (token) {
-        try {
-          const userData = await authService.getCurrentUser();
-          setUser(userData);
-          setIsAdmin(userRole === 'admin');
-        } catch (error) {
-          console.log('Auth init error (expected if no backend):', error.message);
-          localStorage.removeItem('token');
-          localStorage.removeItem('userRole');
-        }
-      }
-      setLoading(false);
-    };
-
-    initAuth();
+    const savedUser = localStorage.getItem('currentUser');
+    const userRole = localStorage.getItem('userRole');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+      setIsAdmin(userRole === 'admin');
+    }
+    setLoading(false);
   }, []);
 
-  const login = async (credentials, role = 'user') => {
-    try {
-      const data = await authService.login(credentials);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userRole', role);
-      setUser(data.user);
-      setIsAdmin(role === 'admin');
+  const login = async ({ email, password }) => {
+    const users = getMockUsers();
+    const found = users.find(u => u.email === email && u.password === password);
+    
+    // Admin mock login
+    if (email === 'admin@epharmacy.com' && password === 'admin123') {
+      const adminUser = { id: 'admin', name: 'Admin', email, role: 'admin' };
+      localStorage.setItem('currentUser', JSON.stringify(adminUser));
+      localStorage.setItem('userRole', 'admin');
+      setUser(adminUser);
+      setIsAdmin(true);
       toast.success('Successfully logged in!');
-      return data;
-    } catch (error) {
-      toast.error(error.message || 'Login failed');
-      throw error;
+      return adminUser;
     }
+
+    if (!found) {
+      toast.error('Invalid email or password');
+      throw new Error('Invalid email or password');
+    }
+
+    const loggedUser = { id: found.id, name: found.name, email: found.email };
+    localStorage.setItem('currentUser', JSON.stringify(loggedUser));
+    localStorage.setItem('userRole', 'user');
+    setUser(loggedUser);
+    setIsAdmin(false);
+    toast.success('Successfully logged in!');
+    return loggedUser;
   };
 
-  const register = async (userData) => {
-    try {
-      const data = await authService.register(userData);
-      toast.success('Registration successful! Please login.');
-      return data;
-    } catch (error) {
-      toast.error(error.message || 'Registration failed');
-      throw error;
+  const register = async ({ name, email, password, phone }) => {
+    const users = getMockUsers();
+    const exists = users.find(u => u.email === email);
+    
+    if (exists) {
+      toast.error('Email already registered');
+      throw new Error('Email already registered');
     }
+
+    const newUser = { id: Date.now().toString(), name, email, password, phone };
+    saveMockUsers([...users, newUser]);
+    toast.success('Registration successful! Please login.');
+    return newUser;
   };
 
-  const logout = async () => {
-    try {
-      await authService.logout();
-      localStorage.removeItem('token');
-      localStorage.removeItem('userRole');
-      setUser(null);
-      setIsAdmin(false);
-      toast.success('Logged out successfully');
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
+  const logout = () => {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userRole');
+    setUser(null);
+    setIsAdmin(false);
+    toast.success('Logged out successfully');
   };
 
   const value = {
