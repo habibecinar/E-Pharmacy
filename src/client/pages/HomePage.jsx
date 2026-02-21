@@ -31,7 +31,7 @@ const HomePage = () => {
     setIsLoading(true);
     try {
       await registerUser(data);
-      navigate('/home');
+      navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
     } finally {

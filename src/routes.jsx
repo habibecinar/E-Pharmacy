@@ -38,11 +38,13 @@ const AdminRoute = ({ children }) => {
 };
 
 function AppRoutes() {
+  const { user } = useAuth();
+
   return (
     <Routes>
       {/* Client Routes */}
       <Route path="/" element={<ClientLayout />}>
-        <Route index element={<Navigate to="/home" replace />} />
+        <Route index element={<Navigate to={user ? '/medicine' : '/home'} replace />} />
         <Route path="home" element={<HomePage />} />
         <Route path="medicine-store" element={<MedicineStorePage />} />
         <Route path="medicine" element={<MedicinePage />} />

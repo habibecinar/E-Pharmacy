@@ -29,7 +29,7 @@ const LoginPage = () => {
     setIsLoading(true);
     try {
       await login(data);
-      navigate('/home');
+      navigate('/medicine');
     } catch (error) {
       console.error('Login error:', error);
     } finally {
