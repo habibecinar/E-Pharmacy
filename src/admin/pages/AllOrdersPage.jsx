@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Modal from '../../shared/components/Modal/Modal';
-import { Button, Input } from '../../shared/components';
 import './AllOrdersPage.css';
 
 const AllOrdersPage = () => {
@@ -104,12 +103,17 @@ const AllOrdersPage = () => {
     <div className="orders-page">
       <div className="page-header">
         <h1 className="page-title">All Orders</h1>
-        <Button variant="primary">+ New Order</Button>
+        <button className="btn-add-order">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New Order
+        </button>
       </div>
 
       <div className="filters-section">
-        <div className="search-box">
-          <Input
+        <div className="search-wrapper">
+          <svg className="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input
+            className="search-input"
             placeholder="Search by order ID or customer..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

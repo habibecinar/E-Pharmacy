@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     return loggedUser;
   };
 
-  const register = async ({ name, email, password, phone }) => {
+  const register = async ({ name, email, password, phone, shopData }) => {
     const users = getMockUsers();
     const exists = users.find(u => u.email === email);
     
@@ -68,9 +68,16 @@ export const AuthProvider = ({ children }) => {
       throw new Error('Email already registered');
     }
 
-    const newUser = { id: Date.now().toString(), name, email, password, phone };
+    const newUser = {
+      id: Date.now().toString(),
+      name,
+      email,
+      password,
+      phone,
+      shopData: shopData || null,
+    };
     saveMockUsers([...users, newUser]);
-    toast.success('Registration successful! Please login.');
+    toast.success('Account created! Please login.');
     return newUser;
   };
 
