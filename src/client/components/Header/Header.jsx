@@ -4,12 +4,12 @@ import { Button } from '../../../shared/components';
 import './Header.css';
 
 const Header = () => {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
+  const handleLogout = () => {
+    logout();
+    navigate('/home');
   };
 
   return (
@@ -17,7 +17,7 @@ const Header = () => {
       <div className="container">
         <div className="header-content">
           {/* Logo */}
-          <Link to="/home" className="header-logo">
+          <Link to={user ? '/medicine' : '/home'} className="header-logo">
             <img 
               src="/images/logo/logo.png" 
               alt="E-Pharmacy" 
@@ -25,24 +25,37 @@ const Header = () => {
             />
           </Link>
 
-          {/* Navigation */}
-          <nav className="header-nav">
-            <NavLink to="/medicine-store" className="header-nav-link">
-              Shop
-            </NavLink>
-            <NavLink to="/medicine" className="header-nav-link">
-              Medicine
-            </NavLink>
-            <NavLink to="/statistics" className="header-nav-link">
-              Statistics
-            </NavLink>
-          </nav>
+          {/* Navigation - sadece giriş yapılmışsa göster */}
+          {user && (
+            <nav className="header-nav">
+              <NavLink to="/medicine-store" className="header-nav-link">
+                Shop
+              </NavLink>
+              <NavLink to="/medicine" className="header-nav-link">
+                Medicine
+              </NavLink>
+              <NavLink to="/statistics" className="header-nav-link">
+                Statistics
+              </NavLink>
+            </nav>
+          )}
 
           {/* Auth Buttons */}
           <div className="header-auth">
-            <Button variant="outline" size="small" onClick={handleLogout}>
-              Log out
-            </Button>
+            {user ? (
+              <Button variant="outline" size="small" onClick={handleLogout}>
+                Log out
+              </Button>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button variant="outline" size="small">Log in</Button>
+                </Link>
+                <Link to="/home">
+                  <Button variant="primary" size="small">Register</Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
