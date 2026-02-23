@@ -1,15 +1,46 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '../../shared/components';
+import { useAuth } from '../../contexts/AuthContext';
 import './MedicinePage.css';
 
 const MedicinePage = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const shopItemsKey = `shopItems_${user?.id}`;
+
+  const [activeTab, setActiveTab] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
+  const [shopItems, setShopItems] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(`shopItems_${user?.id}`) || '[]');
+    } catch {
+      return [];
+    }
+  });
+  const [flashIds, setFlashIds] = useState([]);
 
-  // Mock medicine data - resme göre
+  const handleAddToShop = (medicine) => {
+    if (!shopItems.find((m) => m.id === medicine.id)) {
+      const updated = [...shopItems, medicine];
+      setShopItems(updated);
+      localStorage.setItem(shopItemsKey, JSON.stringify(updated));
+    }
+    setFlashIds((prev) => [...prev, medicine.id]);
+    setTimeout(() => {
+      setFlashIds((prev) => prev.filter((id) => id !== medicine.id));
+    }, 2000);
+  };
+
+  const handleRemoveFromShop = (medicineId) => {
+    const updated = shopItems.filter((m) => m.id !== medicineId);
+    setShopItems(updated);
+    localStorage.setItem(shopItemsKey, JSON.stringify(updated));
+  };
+
+  // Mock medicine data
   const medicines = [
     {
       id: 1,
@@ -79,12 +110,68 @@ const MedicinePage = () => {
 
   const categories = ['all', 'Medicine', 'Supplements', 'Skin Care', 'First Aid', 'Herbal'];
 
-  const filteredMedicines = medicines.filter(medicine => {
+  const sourceList = activeTab === 'drugstore' ? shopItems : medicines;
+
+  const displayedMedicines = sourceList.filter(medicine => {
     const matchesSearch = medicine.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          medicine.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || medicine.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  const renderCard = (medicine) => {
+    const isInShop = shopItems.some((m) => m.id === medicine.id);
+    const isFlashing = flashIds.includes(medicine.id);
+
+    return (
+      <div key={medicine.id} className="medicine-card">
+        <div className="medicine-image">
+          <img
+            src={medicine.image}
+            alt={medicine.name}
+            onError={(e) => {
+              e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect width="200" height="200" fill="%23f5f5f5"/><text x="50%" y="50%" text-anchor="middle" fill="%23999" font-size="16">💊</text></svg>';
+            }}
+          />
+        </div>
+
+        <div className="medicine-info">
+          <h3 className="medicine-name">{medicine.name}</h3>
+          <p className="medicine-desc">{medicine.description}</p>
+          <p className="medicine-price">৳{medicine.price}</p>
+        </div>
+
+        <div className="medicine-actions">
+          {activeTab === 'drugstore' ? (
+            <Button
+              variant="primary"
+              size="small"
+              className="delete-from-shop-btn"
+              onClick={() => handleRemoveFromShop(medicine.id)}
+            >
+              Delete
+            </Button>
+          ) : (
+            <Button
+              variant="primary"
+              size="small"
+              className={`add-to-shop-btn${isInShop ? ' in-shop' : ''}${isFlashing ? ' flashing' : ''}`}
+              onClick={() => handleAddToShop(medicine)}
+              disabled={isInShop}
+            >
+              {isFlashing ? 'Added!' : isInShop ? 'In shop' : 'Add to shop'}
+            </Button>
+          )}
+          <button
+            className="details-link"
+            onClick={() => navigate(`/medicine/${medicine.id}`)}
+          >
+            Details
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="medicine-page">
@@ -96,15 +183,28 @@ const MedicinePage = () => {
 
         {/* Tabs */}
         <div className="tabs">
-          <button className="tab active">Drug store</button>
-          <button className="tab">All medicine</button>
+          <button
+            className={`tab${activeTab === 'drugstore' ? ' active' : ''}`}
+            onClick={() => setActiveTab('drugstore')}
+          >
+            Drug store
+            {shopItems.length > 0 && (
+              <span className="tab-badge">{shopItems.length}</span>
+            )}
+          </button>
+          <button
+            className={`tab${activeTab === 'all' ? ' active' : ''}`}
+            onClick={() => setActiveTab('all')}
+          >
+            All medicine
+          </button>
         </div>
 
         {/* Search and Filter Row */}
         <div className="search-filter-row">
           {/* Category Dropdown */}
           <div className="category-dropdown">
-            <button 
+            <button
               className="dropdown-button"
               onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
             >
@@ -145,44 +245,17 @@ const MedicinePage = () => {
         </div>
 
         {/* Medicine Grid */}
-        <div className="medicine-grid">
-          {filteredMedicines.map(medicine => (
-            <div key={medicine.id} className="medicine-card">
-              <div className="medicine-image">
-                <img 
-                  src={medicine.image} 
-                  alt={medicine.name}
-                  onError={(e) => {
-                    e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect width="200" height="200" fill="%23f5f5f5"/><text x="50%" y="50%" text-anchor="middle" fill="%23999" font-size="16">💊</text></svg>';
-                  }}
-                />
-              </div>
-
-              <div className="medicine-info">
-                <h3 className="medicine-name">{medicine.name}</h3>
-                <p className="medicine-desc">{medicine.description}</p>
-                <p className="medicine-price">৳{medicine.price}</p>
-              </div>
-
-              <div className="medicine-actions">
-                <Button
-                  variant="primary"
-                  size="small"
-                  className="add-to-shop-btn"
-                  onClick={() => navigate('/medicine-store')}
-                >
-                  Add to shop
-                </Button>
-                <button 
-                  className="details-link"
-                  onClick={() => navigate(`/medicine/${medicine.id}`)}
-                >
-                  Details
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+        {displayedMedicines.length > 0 ? (
+          <div className="medicine-grid">
+            {displayedMedicines.map(renderCard)}
+          </div>
+        ) : (
+          <div className="empty-state">
+            {activeTab === 'drugstore'
+              ? 'No medicines added to your shop yet.'
+              : 'No medicines found.'}
+          </div>
+        )}
       </div>
     </div>
   );

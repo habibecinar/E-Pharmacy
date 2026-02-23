@@ -54,6 +54,20 @@
   color: #4CAF50;
 }
 
+.tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  background: #4CAF50;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
 /* Search and Filter Row */
 .search-filter-row {
   display: grid;
@@ -219,6 +233,39 @@
 
 .add-to-shop-btn:hover {
   background: #45a049 !important;
+}
+
+.add-to-shop-btn.in-shop {
+  background: #a5d6a7 !important;
+  color: #1b5e20 !important;
+  cursor: default;
+}
+
+.delete-from-shop-btn {
+  width: 100%;
+  background: #4CAF50 !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-from-shop-btn:hover {
+  background: #45a049 !important;
+}
+
+.add-to-shop-btn.flashing {
+  background: #2e7d32 !important;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 16px;
 }
 
 .details-link {
