@@ -165,7 +165,12 @@ const MedicinePage = () => {
               </div>
 
               <div className="medicine-actions">
-                <Button variant="primary" size="small" className="add-to-shop-btn">
+                <Button
+                  variant="primary"
+                  size="small"
+                  className="add-to-shop-btn"
+                  onClick={() => navigate('/medicine-store')}
+                >
                   Add to shop
                 </Button>
                 <button 

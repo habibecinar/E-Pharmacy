@@ -5,16 +5,21 @@ import './MedicineStorePage.css';
 
 const MedicineStorePage = () => {
   const [hasDelivery, setHasDelivery] = useState('yes');
-  
+  const [successMessage, setSuccessMessage] = useState('');
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     console.log('Shop Data:', { ...data, hasDelivery });
-    // TODO: API call to create shop
+    setSuccessMessage('Your shop has been created successfully!');
+    reset();
+    setHasDelivery('yes');
+    setTimeout(() => setSuccessMessage(''), 4000);
   };
 
   return (
@@ -155,6 +160,10 @@ const MedicineStorePage = () => {
                   Create account
                 </Button>
               </div>
+
+              {successMessage && (
+                <p className="success-message">{successMessage}</p>
+              )}
             </form>
           </div>
 
